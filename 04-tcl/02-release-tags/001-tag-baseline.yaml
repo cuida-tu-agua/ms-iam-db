@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: tcl-tag-001-baseline
+      author: esteban
+      comment: Baseline tag of the IAM domain (schema + seeds + grants)
+      changes:
+        - tagDatabase:
+            tag: v1.0-baseline

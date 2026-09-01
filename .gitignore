@@ -1,0 +1,7 @@
+# Credenciales reales de Liquibase (NUNCA subir)
+.env
+
+# Logs / temporales
+*.log
+/target/
+/.liquibase/

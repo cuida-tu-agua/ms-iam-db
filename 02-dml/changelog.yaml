@@ -1,0 +1,28 @@
+databaseChangeLog:
+
+  - includeAll:
+      path: 00-inserts/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+  - includeAll:
+      path: 01-updates/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+  - includeAll:
+      path: 02-deletes/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+# MERGE (insertar-o-actualizar catálogos)
+  - includeAll:
+      path: 03-upserts/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+# parches de datos puntuales (data fixes)
+  - includeAll:
+      path: 04-patches/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false

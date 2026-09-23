@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.1-tcl-tag-001
+      author: esteban
+      comment: Esquema security alineado con el modelo de dominio v5 + PB v2 (E1, E14)
+      changes:
+        - tagDatabase:
+            tag: v1.1-iam-model-v5

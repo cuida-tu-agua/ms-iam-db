@@ -1,0 +1,33 @@
+databaseChangeLog:
+# Release v1.1 — alinea el esquema security con el modelo de dominio actual
+# (02-domain/entities-and-rules.md BC-01, 06-data/models.md, PB v2 E1 + E14).
+# Corre DESPUÉS del tag v1.0-baseline. Orden: drop legacy → tables → FK → indexes → seeds → tag.
+
+  - include:
+      file: 01-ddl/00-drop-legacy/001-drop-legacy-v1.0.yaml
+      relativeToChangelogFile: true
+
+  - includeAll:
+      path: 01-ddl/03-tables/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+  - includeAll:
+      path: 01-ddl/04-alter/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+  - includeAll:
+      path: 01-ddl/09-indexes/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+  - includeAll:
+      path: 02-dml/00-inserts/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+  - includeAll:
+      path: 04-tcl/02-release-tags/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false

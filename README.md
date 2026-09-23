@@ -51,6 +51,18 @@ Dentro de `04_tcl` solo corren `00_transaction_blocks` y `02_release_tags`.
 - `04_tcl/01_manual_recoveries/` → **NO** se auto-ejecuta (scripts manuales).
 - `05_rollbacks/` → **NO** se incluye en el master (reversión, no aplicación).
 
+## Releases (forward-only)
+
+| Tag | Contenido | Ubicación |
+|-----|-----------|-----------|
+| `v1.0-baseline` | Esquema inicial (RBAC genérico, PascalCase, INT) | `01-ddl/` … `04-tcl/` |
+| `v1.1-iam-model-v5` | Esquema `security` alineado con el dominio BC-01 y el PB v2 (E1, E14): `users`, `user_credentials`, `email_verifications`, `password_resets`, `refresh_tokens`, `login_attempts`, `activity_log`, `roles`, `user_roles` | `06-releases/v1.1/` |
+
+- El master incluye las releases **después** del tag `v1.0-baseline`. Cada release nueva va en `06-releases/vX.Y/` con su propio `changelog.yaml` y su tag.
+- `v1.1` elimina las tablas v1.0 antes de crear las nuevas (la collation CI trata `Users` y `users` como el mismo objeto).
+- `liquibase rollback v1.0-baseline` reconstruye v1.0 con `05-rollbacks/01-ddl/v1.1/001-recreate-legacy-v1.0.sql`.
+- Roles en BD: solo los de **plataforma** (`USER`, `ADMIN`). Dueño/Colaborador son por lugar (`places.place_members`); Invitado es anónimo por enlace.
+
 ## Puesta en marcha
 
 ```bash
@@ -63,7 +75,7 @@ cp liquibase.properties.example liquibase.properties   # editar credenciales
 # 3) Aplicar
 liquibase status --verbose
 liquibase update-sql        # dry run
-liquibase update            # aplica esquema + seeds + grants + tag v1.0-baseline
+liquibase update            # aplica v1.0-baseline + releases (v1.1-iam-model-v5)
 ```
 
 O con Docker: `docker compose up`.
@@ -76,7 +88,7 @@ schemas → tables → FK (04_alter) → indexes → inserts (seeds) → roles �
 
 ## Rollback
 
-- **Automático:** `liquibase rollback v1.0-baseline` (usa los `--rollback` inline).
+- **Automático:** `liquibase rollback <tag>` (usa los `--rollback` inline), p. ej. `liquibase rollback v1.0-baseline`.
 - **Manual/emergencia:** scripts en `05_rollbacks/<categoría>/` con `sqlcmd`.
 
 ## Reglas

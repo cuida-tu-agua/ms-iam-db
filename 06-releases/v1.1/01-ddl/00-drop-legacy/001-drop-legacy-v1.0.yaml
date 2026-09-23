@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.1-ddl-drop-001-legacy-v1.0
+      author: esteban
+      comment: >
+        Retira el esquema v1.0 (PascalCase, INT, RBAC genérico ADMIN/AUDITOR/OPERATOR/READER).
+        Se reemplaza por el modelo v5 (snake_case, BIGINT + uuid). Debe ir ANTES de crear
+        security.users: la collation CI de SQL Server trata Users y users como el mismo nombre.
+      changes:
+        - sql:
+            splitStatements: true
+            endDelimiter: ;
+            sql: |
+              DROP TABLE security.Role_Permission;
+              DROP TABLE security.User_Role;
+              DROP TABLE security.User_Session;
+              DROP TABLE security.Audit;
+              DROP TABLE security.Permissions;
+              DROP TABLE security.Roles;
+              DROP TABLE security.Users;
+              DROP TABLE security.Log_Errors;
+              DROP TABLE security.Security_Config;
+              DROP TABLE security.Password_Policies;
+      rollback:
+        - sqlFile:
+            path: 05-rollbacks/01-ddl/v1.1/001-recreate-legacy-v1.0.sql
+            splitStatements: true
+            endDelimiter: ;

@@ -4,7 +4,7 @@
 --comment: HU-003 cada intento de login (éxito o fallo). user_id NULL cuando el correo no existe
 CREATE TABLE security.login_attempts (
     id             BIGINT        IDENTITY(1,1) NOT NULL,
-    user_id        BIGINT        NULL,
+    user_id        UNIQUEIDENTIFIER NULL,
     email          NVARCHAR(320) NOT NULL,
     ip_address     NVARCHAR(45)  NOT NULL,
     success        BIT           NOT NULL,

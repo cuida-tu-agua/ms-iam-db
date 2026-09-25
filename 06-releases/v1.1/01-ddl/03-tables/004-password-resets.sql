@@ -4,7 +4,7 @@
 --comment: HU-005 reset de contraseña de un solo uso (15 min). + channel: se solicita por correo o teléfono
 CREATE TABLE security.password_resets (
     id          BIGINT        IDENTITY(1,1) NOT NULL,
-    user_id     BIGINT        NOT NULL,
+    user_id     UNIQUEIDENTIFIER NOT NULL,
     token_hash  NVARCHAR(256) NOT NULL,
     channel     NVARCHAR(10)  NOT NULL CONSTRAINT DF_pwdreset_channel    DEFAULT (N'EMAIL'),
     expires_at  DATETIME2     NOT NULL,

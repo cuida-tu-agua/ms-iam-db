@@ -4,7 +4,7 @@
 --comment: Una credencial por tipo y usuario (LOCAL / GOOGLE). HU-004: ambos métodos vinculados a la misma cuenta
 CREATE TABLE security.user_credentials (
     id              BIGINT        IDENTITY(1,1) NOT NULL,
-    user_id         BIGINT        NOT NULL,
+    user_id         UNIQUEIDENTIFIER NOT NULL,
     credential_type NVARCHAR(10)  NOT NULL,
     password_hash   NVARCHAR(256) NULL,
     google_id       NVARCHAR(256) NULL,

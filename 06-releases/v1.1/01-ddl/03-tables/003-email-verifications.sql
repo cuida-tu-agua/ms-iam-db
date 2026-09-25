@@ -4,7 +4,7 @@
 --comment: HU-002 token de verificación de correo (expira a las 24 h, se guarda solo el hash)
 CREATE TABLE security.email_verifications (
     id          BIGINT        IDENTITY(1,1) NOT NULL,
-    user_id     BIGINT        NOT NULL,
+    user_id     UNIQUEIDENTIFIER NOT NULL,
     token_hash  NVARCHAR(256) NOT NULL,
     expires_at  DATETIME2     NOT NULL,
     verified_at DATETIME2     NULL,

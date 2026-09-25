@@ -4,7 +4,7 @@ databaseChangeLog:
       author: esteban
       comment: >
         Retira el esquema v1.0 (PascalCase, INT, RBAC genérico ADMIN/AUDITOR/OPERATOR/READER).
-        Se reemplaza por el modelo v5 (snake_case, BIGINT + uuid). Debe ir ANTES de crear
+        Se reemplaza por el modelo v5 (snake_case, users.id UNIQUEIDENTIFIER). Debe ir ANTES de crear
         security.users: la collation CI de SQL Server trata Users y users como el mismo nombre.
       changes:
         - sql:

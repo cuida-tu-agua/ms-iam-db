@@ -4,7 +4,7 @@
 --comment: Auditoría general (HU-003, HU-011, HU-060: acción, entidad, metadata JSON, IP)
 CREATE TABLE security.activity_log (
     id          BIGINT         IDENTITY(1,1) NOT NULL,
-    user_id     BIGINT         NOT NULL,
+    user_id     UNIQUEIDENTIFIER NOT NULL,
     action      NVARCHAR(50)   NOT NULL,
     entity_type NVARCHAR(50)   NULL,
     entity_id   NVARCHAR(100)  NULL,

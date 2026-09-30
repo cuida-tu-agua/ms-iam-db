@@ -1,0 +1,11 @@
+databaseChangeLog:
+# Release v1.2 — what the complete E1 (HU-001..008) needs on top of v1.1.
+# Runs AFTER the v1.1-iam-model-v5 tag. Order: alter → tag.
+  - includeAll:
+      path: 01-ddl/04-alter/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+  - includeAll:
+      path: 04-tcl/02-release-tags/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false

@@ -57,6 +57,8 @@ Dentro de `04_tcl` solo corren `00_transaction_blocks` y `02_release_tags`.
 |-----|-----------|-----------|
 | `v1.0-baseline` | Esquema inicial (RBAC genérico, PascalCase, INT) | `01-ddl/` … `04-tcl/` |
 | `v1.1-iam-model-v5` | Esquema `security` alineado con el dominio BC-01 y el PB v2 (E1, E14): `users`, `user_credentials`, `email_verifications`, `password_resets`, `refresh_tokens`, `login_attempts`, `activity_log`, `roles`, `user_roles` | `06-releases/v1.1/` |
+| `v1.2-iam-e1` | `failed_attempts` en `email_verifications` y `password_resets` (códigos de 6 dígitos, máx. 5 intentos) + índice de refresh tokens activos | `06-releases/v1.2/` |
+
 
 - El master incluye las releases **después** del tag `v1.0-baseline`. Cada release nueva va en `06-releases/vX.Y/` con su propio `changelog.yaml` y su tag.
 - `v1.1` elimina las tablas v1.0 antes de crear las nuevas (la collation CI trata `Users` y `users` como el mismo objeto).

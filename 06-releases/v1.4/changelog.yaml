@@ -1,0 +1,10 @@
+databaseChangeLog:
+# Release v1.4 — E14: official platform administrators (security.user_roles). Runs AFTER the v1.3 tag.
+  - includeAll:
+      path: 02-dml/00-inserts/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+  - includeAll:
+      path: 04-tcl/02-release-tags/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false

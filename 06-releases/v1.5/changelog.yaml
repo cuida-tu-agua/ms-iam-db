@@ -1,0 +1,13 @@
+databaseChangeLog:
+# Release v1.5 — HU-028: verify the phone by SMS or WhatsApp (security.action_codes + security.users.phone_channel).
+# Runs AFTER v1.4. Order: alter → tag.
+
+  - includeAll:
+      path: 01-ddl/04-alter/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+
+  - includeAll:
+      path: 04-tcl/02-release-tags/
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false

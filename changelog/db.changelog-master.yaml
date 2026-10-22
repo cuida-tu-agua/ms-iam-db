@@ -32,4 +32,8 @@ databaseChangeLog:
   - include:
       file: ../06-releases/v1.4/changelog.yaml
       relativeToChangelogFile: true
+
+  - include:
+      file: ../06-releases/v1.5/changelog.yaml
+      relativeToChangelogFile: true
   
